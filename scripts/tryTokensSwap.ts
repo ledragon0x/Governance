@@ -7,6 +7,7 @@ async function main() {
   const l2TokenReceiver = L2TokenReceiver.attach('0x2C0f43E5C92459F62C102517956A95E88E177e95') as L2TokenReceiver;
 
   const tx = await l2TokenReceiver.swap(500, 0);
+  console.log('TX Happening');
   console.log(tx);
 }
 

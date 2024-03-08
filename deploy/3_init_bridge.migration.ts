@@ -6,7 +6,7 @@ import {
   L1Sender__factory,
   L2MessageReceiver__factory,
   LZEndpointMock__factory,
-  MOR__factory,
+  AGEN__factory,
 } from '@/generated-types/ethers';
 import { IL2MessageReceiver } from '@/generated-types/ethers/contracts/L2MessageReceiver';
 
@@ -31,7 +31,7 @@ module.exports = async function (deployer: Deployer) {
 
   const l1Sender = L1Sender__factory.connect(UserStorage.get('L1Sender Proxy'), await deployer.getSigner());
 
-  const mor = MOR__factory.connect(UserStorage.get('MOR'), await deployer.getSigner());
+  const agen = AGEN__factory.connect(UserStorage.get('AGEN'), await deployer.getSigner());
 
   const l2MessageReceiverConfig: IL2MessageReceiver.ConfigStruct = {
     gateway: lzEndpointL2,
@@ -39,5 +39,5 @@ module.exports = async function (deployer: Deployer) {
     senderChainId: config.chainsConfig.senderChainId,
   };
 
-  await l2MessageReceiver.setParams(mor, l2MessageReceiverConfig);
+  await l2MessageReceiver.setParams(agen, l2MessageReceiverConfig);
 };

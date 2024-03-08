@@ -6,7 +6,7 @@
   },
   "pools": [
     {
-      "payoutStart": 1704360948,
+      "payoutStart": 1735081200000,
       "decreaseInterval": 86400,
       "withdrawLockPeriod": 120,
       "claimLockPeriod": 60,
@@ -17,7 +17,7 @@
       "isPublic": true
     },
     {
-      "payoutStart": 1704360948,
+      "payoutStart": 1735081200000,
       "decreaseInterval": 60,
       "withdrawLockPeriod": 1,
       "claimLockPeriod": 1,

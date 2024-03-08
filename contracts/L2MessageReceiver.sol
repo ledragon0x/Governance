@@ -4,7 +4,7 @@ pragma solidity ^0.8.20;
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-import {IMOR} from "./interfaces/IMOR.sol";
+import {IAGEN} from "./interfaces/IAGEN.sol";
 import {IL2MessageReceiver} from "./interfaces/IL2MessageReceiver.sol";
 
 contract L2MessageReceiver is IL2MessageReceiver, OwnableUpgradeable, UUPSUpgradeable {
@@ -102,7 +102,7 @@ contract L2MessageReceiver is IL2MessageReceiver, OwnableUpgradeable, UUPSUpgrad
 
         (address user_, uint256 amount_) = abi.decode(payload_, (address, uint256));
 
-        IMOR(rewardToken).mint(user_, amount_);
+        IAGEN(rewardToken).mint(user_, amount_);
     }
 
     function _authorizeUpgrade(address) internal view override onlyOwner {}

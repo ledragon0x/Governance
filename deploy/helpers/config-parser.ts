@@ -40,10 +40,10 @@ type PoolInitInfo = IDistribution.PoolStruct & {
 
 export function parseConfig(chainId: bigint): Config {
   let configPath: string;
-
+  console.log({ chainId });
   if (chainId === 31337n) {
     configPath = `deploy/data/config_localhost.json`;
-  } else if (chainId === 1n || chainId === 42161n) {
+  } else if (chainId === 1n || chainId === 42161n || chainId === 84532n) {
     configPath = `deploy/data/config.json`;
   } else if (chainId === 5n || chainId === 421613n) {
     configPath = `deploy/data/config_goerli.json`;
@@ -52,6 +52,8 @@ export function parseConfig(chainId: bigint): Config {
   } else {
     throw new Error(`Invalid chainId`);
   }
+
+  console.log({ configPath });
 
   const config: Config = JSON.parse(readFileSync(configPath, 'utf-8')) as Config;
 

@@ -1,12 +1,12 @@
 {
-  "cap": "1000000000000000000000000",
+  "cap": "3000000000000000000000000",
   "chainsConfig": {
     "senderChainId": 101,
     "receiverChainId": 110
   },
   "pools": [
     {
-      "payoutStart": 1765790236,
+      "payoutStart": 1735081200000,
       "decreaseInterval": 86400,
       "withdrawLockPeriod": 120,
       "claimLockPeriod": 60,
@@ -17,7 +17,7 @@
       "isPublic": true
     },
     {
-      "payoutStart": 1765790236,
+      "payoutStart": 1735081200000,
       "decreaseInterval": 60,
       "withdrawLockPeriod": 1,
       "claimLockPeriod": 1,

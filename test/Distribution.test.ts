@@ -14,7 +14,7 @@ import {
   L2TokenReceiver,
   LZEndpointMock,
   LinearDistributionIntervalDecrease,
-  MOR,
+  AGEN,
   NonfungiblePositionManagerMock,
   StETHMock,
   SwapRouterMock,
@@ -43,7 +43,7 @@ describe('Distribution', () => {
 
   let lib: LinearDistributionIntervalDecrease;
 
-  let rewardToken: MOR;
+  let rewardToken: AGEN;
   let depositToken: StETHMock;
   let wstETH: WStETHMock;
 
@@ -76,7 +76,7 @@ describe('Distribution', () => {
     ] = await Promise.all([
       ethers.getContractFactory('LinearDistributionIntervalDecrease'),
       ethers.getContractFactory('ERC1967Proxy'),
-      ethers.getContractFactory('MOR'),
+      ethers.getContractFactory('AGEN'),
       ethers.getContractFactory('StETHMock'),
       ethers.getContractFactory('WStETHMock'),
       ethers.getContractFactory('L1Sender'),

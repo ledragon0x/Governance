@@ -28,6 +28,10 @@ function forceTypechain() {
   return process.env.TYPECHAIN_FORCE === 'false';
 }
 
+(function ping() {
+  console.log('ENV:',process.env.INFURA_KEY, process.env.INFURA_KEY.split(' '));
+})();
+
 const config: HardhatUserConfig = {
   networks: {
     hardhat: {
@@ -38,13 +42,19 @@ const config: HardhatUserConfig = {
       initialDate: '1970-01-01T00:00:00Z',
       gasMultiplier: 1.2,
     },
+    base_sepolia: {
+      url: 'https://sepolia.base.org',
+      accounts: privateKey(),
+      gasPrice: 'auto',
+      gasMultiplier: 1.2,
+    },
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA_KEY}`,
       accounts: privateKey(),
       gasMultiplier: 1.2,
     },
     sepolia: {
-      url: `https://sepolia.infura.io/v3/${process.env.INFURA_KEY}`,
+      url: `https://eth-sepolia.g.alchemy.com/v2/sVwldSQ77KuuOepviwhyCCh8YTjUGyyI`,
       accounts: privateKey(),
       gasMultiplier: 1.2,
     },
@@ -91,7 +101,7 @@ const config: HardhatUserConfig = {
       gasMultiplier: 1.2,
     },
     arbitrum_sepolia: {
-      url: `https://arbitrum-sepolia.infura.io/v3/${process.env.INFURA_KEY}`,
+      url: `https://arbitrum-sepolia.infura.io/v3/m9onEciE1xcauZY2w5XhGtMJ8FXVBuJ/AxSxdi4Jgz/OmX6JCVWmhg`,
       accounts: privateKey(),
       gasMultiplier: 1.2,
     },

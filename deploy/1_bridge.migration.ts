@@ -6,7 +6,7 @@ import {
   ERC1967Proxy__factory,
   L2MessageReceiver__factory,
   L2TokenReceiver__factory,
-  MOR__factory,
+  AGEN__factory,
   NonfungiblePositionManagerMock__factory,
   StETHMock__factory,
   SwapRouterMock__factory,
@@ -16,7 +16,7 @@ import { IL2TokenReceiver } from '@/generated-types/ethers/contracts/L2TokenRece
 
 module.exports = async function (deployer: Deployer) {
   const config = parseConfig(await deployer.getChainId());
-
+  console.log({ config });
   let WStETH: string;
   let swapRouter: string;
   let nonfungiblePositionManager: string;
@@ -27,25 +27,29 @@ module.exports = async function (deployer: Deployer) {
     nonfungiblePositionManager = config.L2.nonfungiblePositionManager;
   } else {
     // deploy mock
+    console.log('DEPLOYING MOCKS!!!');
     const stETHMock = await deployer.deploy(StETHMock__factory, [], { name: 'StETH on L2' });
     const stETH = await stETHMock.getAddress();
+    console.log('stETH ADD: ', stETH);
 
     const wStEthMock = await deployer.deploy(WStETHMock__factory, [stETH], { name: 'Wrapped stETH on L2' });
     WStETH = await wStEthMock.getAddress();
+    console.log('wStEthMock ADD: ', WStETH);
 
     const swapRouterMock = await deployer.deploy(SwapRouterMock__factory);
     swapRouter = await swapRouterMock.getAddress();
+    console.log('swapRouterMock ADD: ', swapRouter);
 
     const nonfungiblePositionManagerMock = await deployer.deploy(NonfungiblePositionManagerMock__factory);
     nonfungiblePositionManager = await nonfungiblePositionManagerMock.getAddress();
   }
 
-  const MOR = await deployer.deploy(MOR__factory, [config.cap]);
-  if (!UserStorage.has('MOR')) UserStorage.set('MOR', await MOR.getAddress());
+  const AGEN = await deployer.deploy(AGEN__factory, [config.cap]);
+  if (!UserStorage.has('AGEN')) UserStorage.set('AGEN', await AGEN.getAddress());
 
   const swapParams: IL2TokenReceiver.SwapParamsStruct = {
     tokenIn: WStETH,
-    tokenOut: MOR,
+    tokenOut: AGEN,
     fee: config.swapParams.fee,
     sqrtPriceLimitX96: config.swapParams.sqrtPriceLimitX96,
   };
@@ -74,11 +78,11 @@ module.exports = async function (deployer: Deployer) {
   );
   await l2MessageReceiver.L2MessageReceiver__init();
 
-  await MOR.transferOwnership(l2MessageReceiver);
+  await AGEN.transferOwnership(l2MessageReceiver);
 
   Reporter.reportContracts(
     ['L2TokenReceiver', await l2TokenReceiver.getAddress()],
     ['L2MessageReceiver', await l2MessageReceiver.getAddress()],
-    ['MOR', await MOR.getAddress()],
+    ['AGEN', await AGEN.getAddress()],
   );
 };
