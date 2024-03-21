@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {IERC165} from "@openzeppelin/contracts/utils/introspection/IERC165.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/utils/introspection/IERC165Upgradeable.sol";
 
 /**
- * This is the AGEN token contract. The token is ERC20 with cap and burnable features.
+ * This is the AGEN token contract. The token is ERC20Upgradeable with cap of 21MIL AGEN Tokens.
  */
-interface IAGEN is IERC20, IERC165 {
+interface IAGEN is IERC20Upgradeable, IERC165Upgradeable {
     /**
      * The function to get the cap of the token.
      * @return The cap of the token.

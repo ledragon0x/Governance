@@ -28,9 +28,9 @@ function forceTypechain() {
   return process.env.TYPECHAIN_FORCE === 'false';
 }
 
-(function ping() {
-  console.log('ENV:',process.env.INFURA_KEY, process.env.INFURA_KEY.split(' '));
-})();
+// (function ping() {
+//   console.log('ENV:',process.env.INFURA_KEY, process.env.INFURA_KEY.split(' '));
+// })();
 
 const config: HardhatUserConfig = {
   networks: {

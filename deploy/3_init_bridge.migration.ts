@@ -3,10 +3,10 @@ import { Deployer, UserStorage } from '@solarity/hardhat-migrate';
 import { parseConfig } from './helpers/config-parser';
 
 import {
+  AGEN__factory,
   L1Sender__factory,
   L2MessageReceiver__factory,
   LZEndpointMock__factory,
-  AGEN__factory,
 } from '@/generated-types/ethers';
 import { IL2MessageReceiver } from '@/generated-types/ethers/contracts/L2MessageReceiver';
 

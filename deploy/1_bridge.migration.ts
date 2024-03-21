@@ -3,10 +3,10 @@ import { Deployer, Reporter, UserStorage } from '@solarity/hardhat-migrate';
 import { parseConfig } from './helpers/config-parser';
 
 import {
+  AGEN__factory,
   ERC1967Proxy__factory,
   L2MessageReceiver__factory,
   L2TokenReceiver__factory,
-  AGEN__factory,
   NonfungiblePositionManagerMock__factory,
   StETHMock__factory,
   SwapRouterMock__factory,
@@ -46,6 +46,8 @@ module.exports = async function (deployer: Deployer) {
 
   const AGEN = await deployer.deploy(AGEN__factory, [config.cap]);
   if (!UserStorage.has('AGEN')) UserStorage.set('AGEN', await AGEN.getAddress());
+
+  // const AGENProxy = await deployer.deploy()
 
   const swapParams: IL2TokenReceiver.SwapParamsStruct = {
     tokenIn: WStETH,
